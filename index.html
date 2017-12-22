@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>🏋️💪 Barbell Calculator</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<style>
+			body {
+				padding: 20px;
+			}
+			
+			.selected-plate {
+				border-width: 5px;
+				border-style: solid;
+				border-color: gray;
+			}
+			
+			
+			.weight-lg {
+				min-width: 70px;
+				min-height: 70px;	
+			}
+			
+			.weight-sm {
+				min-width: 50px;
+				min-height: 50px;
+			}
+			
+			.btn-plate {
+				border-radius: 50%;
+				margin: 10px;
+				border-color: transparent;
+			}
+			
+			@media screen and (max-width: 900px) {
+				.btn-plate.weight-lg,
+				.btn-plate.weight-sm {
+					font-size: 14px;
+					min-width: 50px;
+					min-height: 50px;
+					margin: 5px;
+				}
+				
+			}
+			
+			.btn-barbell {
+				min-width: 30%;
+			}
+			
+			form {
+				width: 50vw;
+			}
+			
+			@media screen and (max-width: 900px) {
+				form {
+					width: 100vw;
+				}
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<form>
+			<h1>Barbell Calculator</h1>
+		
+			<div class="form-group">
+				<h2>Barbell Weight</h2>
+				<button class="btn btn-barbell btn-dark btn-lg" data-weight="45">45</button>
+				<button class="btn btn-barbell btn-dark btn-lg" data-weight="35">35</button>
+				<button class="btn btn-barbell btn-dark btn-lg" data-weight="15">15</button>
+			</div><!--/.form-group-->
+			
+			<div class="form-group" id="weights-on-bar">
+				<h2>Plates on bar</h2>
+				<p>Only count weight on one side of the bar, we do the math! (x 2)</p>
+			</div>
+			
+			<div class="form-group">	
+				<button class="btn btn-plate btn-circle btn-primary weight-lg plate-blue" data-weight="45">45</button>
+				<button class="btn btn-plate btn-circle btn-warning weight-lg plate-yellow" data-weight="35">35</button>
+				<button class="btn btn-plate btn-circle btn-success weight-lg plate-green" data-weight="25">25</button>
+				<button class="btn btn-plate btn-circle btn-dark weight-lg plate-black" data-weight="15">15</button>
+				<button class="btn btn-plate btn-circle btn-dark weight-lg plate-black" data-weight="10">10</button>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight="5">5</button>
+				<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight="2.5">2.5</button>
+				<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight="1">1</button>
+				<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight=".75">.75</button>
+				<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight=".5">.5</button>
+				<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight=".25">.25</button>
+			</div>
+		
+		</form>
+		
+		<h2 class="total">
+			Weight Total: 0
+		</h2>
+		
+		<button class="btn btn-danger btn-sm start-over">Oops! Start over!</button>
+			
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			const barbellBtns = $(".btn-barbell");
+			const weightBtns = $(".btn-plate");
+			const total = $(".total");
+			const startOver = $(".start-over");
+			
+			let weightsArray = [ ];
+			let barbellWeight;
+			let totalWeight;
+			
+			// add barbell weight
+			barbellBtns.on('click touch', function(e) {
+				// prevent the thing from doing the thing
+				e.preventDefault();	
+				
+				// grab the data attribute
+				let tappedBarbell = $(this).data("weight");
+				
+				// convert string to a number - using parseInt here because they are integers
+				barbellWeight = (parseInt(tappedBarbell));
+				
+				// setting the total text to the barbell weight
+				total.text("Weight Total: " + barbellWeight);
+				
+			});
+			
+			weightBtns.on('click touch', function (e) {
+				// prevent the thing from doing the thing
+				e.preventDefault();
+				
+				// grab the data attribute
+				let tappedWeight = $(this).data("weight");
+				
+				// add border to show selected
+				$(this).addClass("selected-plate");
+				
+				// convert the string to a number
+				let weight = (parseFloat(tappedWeight));
+				
+				// add the number to the weightsArrayh
+				weightsArray.push(weight*2);
+				
+				// add all the values in the array
+				totalWeight = weightsArray.reduce((total, amount) => total + amount); 
+				
+				// check to see if user has selected barbellWeight first
+				if (barbellWeight) {
+					// display the totalWeight on the page
+					total.text("Weight Total: " + (totalWeight + barbellWeight));
+				} else {
+					alert("Hold on there meathead. Please select barbell weight first!");
+				}
+							
+			});
+			
+			startOver.on('click touch', function(e) {
+				// prevent the thing from doing the thing
+				e.preventDefault();
+				
+				// set the weightsArray length to 0
+				weightsArray.length = 0;
+				
+				// set barbellWeight to 0
+				barbellWeight = 0;
+				
+				// display updated weight on page
+				total.text("Weight Total: 0");
+
+			});
+			
+						
+			// TODO: display which weights you have selected visually
+			
+			// TODO: only allow 1 barbell selection
+		});
+	
+	</script>
+	</body>
+</html>
