@@ -1,18 +1,4 @@
-# My cool website
+# Barbell Calculator
 
-This file describes your project to the community. What's your cool website about? What makes it special?
-
-ヽ(๏∀๏ )ﾉ
-
-## ← index.html
-
-Where you'll write the content of your website. 
-
-## ← styles.css
-
-CSS files add styling rules to your content
-
-## ← script.js
-
-If you're feeling fancy you can add interactivity to your site with Javascript
+A little javascript app I made becuase I can't do barbell math :) Feel free to clone and change and make things better!
 
