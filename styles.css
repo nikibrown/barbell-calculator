@@ -1,3 +1,52 @@
-h1 {
-  color: fuchsia;
-}
+			body {
+				padding: 20px;
+			}
+			
+			.selected-plate {
+				border-width: 5px;
+				border-style: solid;
+				border-color: gray;
+			}
+
+
+			.weight-lg {
+				min-width: 70px;
+				min-height: 70px;	
+			}
+			
+			.weight-sm {
+				min-width: 50px;
+				min-height: 50px;
+			}
+			
+			.btn-plate {
+				border-radius: 50%;
+				margin: 10px;
+				border-color: transparent;
+			}
+			
+			@media screen and (max-width: 900px) {
+				.btn-plate.weight-lg,
+				.btn-plate.weight-sm {
+					font-size: 14px;
+					min-width: 50px;
+					min-height: 50px;
+					margin: 5px;
+				}
+				
+			}
+			
+			.btn-barbell {
+				min-width: 30%;
+			}
+			
+			form {
+				width: 50vw;
+			}
+			
+			@media screen and (max-width: 900px) {
+				form {
+					width: 100vw;
+				}
+			}
+			
