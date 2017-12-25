@@ -42,8 +42,21 @@
 				// prevent the thing from doing the thing
 				e.preventDefault();
 				
-				// grab the data attribute
+				// grab the data-weight attribute
 				let tappedWeight = $(this).data("weight");
+
+				// grab the data-quantity attribute
+				let plateQuantity = $(this).find(".plate-quantity").data("quantity");
+
+
+				let plateQuantityIndex = 0;
+
+
+				// update data-qualtity
+				plateQuantity.text(plateQuantityIndex + 1);
+
+				
+				alert(plateQuantityIndex);
 				
 				// add border to show selected
 				$(this).addClass("selected-plate");
