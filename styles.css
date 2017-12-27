@@ -2,6 +2,10 @@ body {
 	padding: 20px;
 }
 
+.start-over {
+	margin-bottom: 30px;
+}
+
 .weight-lg {
 	min-width: 70px;
 	min-height: 70px;

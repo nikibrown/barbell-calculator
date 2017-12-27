@@ -1,4 +1,8 @@
-$(document).ready(function(){
+$(document).ready(function() {
+	// TODO: display which weights you have selected visually
+	// TODO: only allow 1 barbell selection
+	// TODO show barbell with weights selected
+	
 	// barbell buttons
 	const barbellBtns = $(".btn-barbell");
 
@@ -19,6 +23,9 @@ $(document).ready(function(){
 
 	// variable to store the weightsArray + barbellWeight
 	let totalWeight;
+
+	// variable to store quntity of plates elements
+	let plateQuantity = $(".plate-quantity");
 
 	// add barbell weight
 	barbellBtns.on('click touch', function(e) {
@@ -43,17 +50,14 @@ $(document).ready(function(){
 		if (barbellWeight) {
 			// convert the string to a number
 			let weight = (parseFloat($(this).data("weight")));
+			// grab the data-quantity attribute and turn it into a number since its a string
+			let tappedPlateQuantity = parseInt($(this).find(plateQuantity).attr("data-quantity"));
 
-			// grab the data-quantity attribute and turn it into a number
-			let plateQuantity = parseInt($(this).find(".plate-quantity").attr("data-quantity"));
+			// grab the plate-quantity span inside the btn that was clicked
+			let plateQuantityBadge = $(this).find(plateQuantity);
 
-			// grab the plate-quantity span
-			let plateQuantityBadge = $(this).find(".plate-quantity");
-
-			// update plateQuantity
-			// TODO optimize this
-			plateQuantityBadge.attr('data-quantity', plateQuantity + 2 );
-			plateQuantityBadge.text(plateQuantity + 2);
+			// update plateQuantity data & text
+			plateQuantityBadge.attr('data-quantity', tappedPlateQuantity + 2 ).text(tappedPlateQuantity + 2);
 
 			// add the number to the weightsArrayh
 			weightsArray.push(weight*2);
@@ -79,14 +83,11 @@ $(document).ready(function(){
 		// set barbellWeight to 0
 		barbellWeight = 0;
 
+		// reset plateQuantity text and data attr
+		plateQuantity.text("").attr("data-quantity", "0");
+
 		// display updated weight on page
 		total.text("Weight Total: 0");
 
 	});
-
-	// TODO: display which weights you have selected visually
-
-	// TODO: only allow 1 barbell selection
-
-	// TODO show barbell with weights selected
 });
