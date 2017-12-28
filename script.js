@@ -81,7 +81,7 @@ $(document).ready(function() {
 			total.text("Weight Total: " + (totalWeight + barbellWeight));
 
 		} else {
-			alert("Hold on there meathead. Please select barbell weight first!");
+			alert("💪 Hold on there meathead. Please select barbell weight first!");
 		}
 	});
 
