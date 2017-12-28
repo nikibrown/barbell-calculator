@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111549797-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-111549797-1');
+		</script>
+		<title>🏋️💪 Barbell Calculator</title>
+		<meta name="description" content="A little calculator that helps you add up the weight on your barbell">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<link href="styles.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-dark bg-dark">
+				<div class="app-container">
+					<h1 class="navbar-brand">
+						<a href="/index.html" class="navbar-brand">Barbell Calculator</a>
+					</h1>
+				</div><!--/.app-container-->
+			</nav>
+		</header>
+
+		<main>
+			<div class="app-container">
+				<form>
+					<div class="form-group">
+						<h3>Pick your barbell</h3>
+						<div data-toggle="buttons">
+							<label class="btn btn-barbell btn-dark btn-lg btn-barbell-45" data-weight="45">
+								<input type="radio" name="options" id="option1" autocomplete="off"> 45
+								<span class="badge badge-pill badge-danger barbell-badge"></span>
+							</label>
+							<label class="btn btn-barbell btn-dark btn-lg btn-barbell-35" data-weight="35">
+								<input type="radio" name="options" id="option2" autocomplete="off"> 35
+								<span class="badge badge-pill badge-danger barbell-badge"></span>
+							</label>
+							<label class="btn btn-barbell btn-dark btn-lg btn-barbell-15" data-weight="15">
+								<input type="radio" name="options" id="option3" autocomplete="off"> 15
+								<span class="badge badge-pill badge-danger barbell-badge"></span>
+							</label>
+						</div>
+
+						<div class="form-group" id="weights-on-bar">
+							<h3>Pick your plates</h3>
+							<p>Only count weight on one side of the bar, we do the math! (x 2)</p>
+						</div>
+
+						<div class="form-group">
+							<button class="btn btn-plate btn-circle btn-danger weight-lg plate-blue" data-weight="55">55
+								<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+							</button>
+							<button class="btn btn-plate btn-circle btn-primary weight-lg plate-blue" data-weight="45">45
+								<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+							</button>
+							<button class="btn btn-plate btn-circle btn-warning weight-lg plate-yellow" data-weight="35">35
+								<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+							</button>
+							<button class="btn btn-plate btn-circle btn-success weight-lg plate-green" data-weight="25">25
+								<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+							</button>
+							<button class="btn btn-plate btn-circle btn-dark weight-lg plate-black" data-weight="15">15
+								<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+							</button>
+							<button class="btn btn-plate btn-circle btn-dark weight-lg plate-black" data-weight="10">10
+								<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+							</button>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight="5">5
+								<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+							</button>
+							<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight="2.5">2.5
+								<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+							</button>
+							<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight="1">1
+								<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+							</button>
+							<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight=".75">.75
+								<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+							</button>
+							<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight=".5">.5
+								<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+							</button>
+							<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight=".25">.25
+								<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+							</button>
+						</div>
+					</form>
+
+					<h3 class="total">
+						Weight Total: 0
+					</h3>
+					<button class="btn btn-danger btn-sm start-over">Oops! Start over!</button>
+				</div><!--/.app-container-->
+			</main>
+
+			<footer>
+				<div class="app-container">
+					<p><small><a href="about.html">Learn more about the barbell calculator &rarr;</a></small></p>
+				</div><!--/.app-container-->
+			</footer>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+			<script src="script.js"></script>
+		</body>
+	</html>

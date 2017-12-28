@@ -1,0 +1,137 @@
+.app-container {
+	margin: 0 auto;
+	width: 50vw;
+}
+
+@media screen and (max-width: 900px) {
+	.app-container {
+		margin: 0 auto;
+		width: 95%;
+	}
+}
+
+header {
+
+}
+
+footer {
+
+}
+
+main {
+	margin: 20px 0;
+}
+
+.weight-lg {
+	min-width: 70px;
+	min-height: 70px;
+}
+
+.weight-sm {
+	min-width: 50px;
+	min-height: 50px;
+}
+
+.btn {
+	position: relative;
+}
+
+.btn:hover {
+	cursor: pointer;
+}
+
+.btn-plate {
+	border-radius: 50%;
+	border: none;
+	margin: 10px;
+}
+
+
+
+
+.btn:focus,
+.btn:active,
+.btn:not([disabled]):not(.disabled):active {
+	box-shadow: none!important;
+}
+
+.btn .badge {
+	position: absolute;
+	bottom: -5px;
+	right: -5px;
+	z-index: 10;
+	top: auto;
+	height: 19px;
+}
+
+@media screen and (max-width: 900px) {
+	.btn-plate.weight-lg,
+	.btn-plate.weight-sm {
+		font-size: 14px;
+		min-width: 39px;
+		min-height: 39px;
+		margin: 3px;
+	}
+}
+
+@media screen and (max-width: 330px) {
+	.btn-plate.weight-lg,
+	.btn-plate.weight-sm {
+		font-size: 12px;
+		min-width: 39px;
+		min-height: 39px;
+		margin: 2px;
+	}
+}
+
+.btn-barbell {
+	border-width: 4px;
+	min-width: 30%;
+}
+
+.btn-dark:not([disabled]):not(.disabled).active,
+.btn-dark:not([disabled]):not(.disabled):active {
+    color: #fff;
+    background-color: #1d2124;
+    border-color: inherit;
+    box-shadow: none;
+}
+
+
+.btn-barbell:first-child {
+	margin-right: 5px;
+}
+
+.btn-barbell:last-child {
+	margin-left: 5px;
+}
+
+.btn-dark.btn-barbell-45:not([disabled]):not(.disabled).active,
+.btn-dark.btn-barbell-45:not([disabled]):not(.disabled):active,
+.btn-barbell-45  {
+	border-color: var(--blue);
+}
+
+.btn-dark.btn-barbell-45:hover {
+	border-color: #0062cc;
+}
+
+.btn-dark.btn-barbell-35:not([disabled]):not(.disabled).active,
+.btn-dark.btn-barbell-35:not([disabled]):not(.disabled):active,
+.btn-barbell-35  {
+	border-color: var(--yellow);
+}
+
+.btn-dark.btn-barbell-35:hover {
+	border-color: #d39e00;
+}
+
+.btn-dark.btn-barbell-15:not([disabled]):not(.disabled).active,
+.btn-dark.btn-barbell-15:not([disabled]):not(.disabled):active,
+.btn-barbell-15  {
+	border-color: #ccc;
+}
+
+.btn-dark.btn-barbell-15:hover {
+	border-color: var(--gray);
+}
