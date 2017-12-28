@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset='utf-8'>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111549797-1"></script>
 		<script>
@@ -36,9 +37,15 @@
 				<form>
 					<div class="form-group">
 						<h3>Pick your barbell</h3>
-						<button class="btn btn-barbell btn-dark btn-lg" data-weight="45" id="mensbar">45</button>
-						<button class="btn btn-barbell btn-dark btn-lg" data-weight="35">35</button>
-						<button class="btn btn-barbell btn-dark btn-lg" data-weight="15">15</button>
+						<button class="btn btn-barbell btn-dark btn-lg" data-weight="45" id="mensbar">45
+							<span class="badge badge-pill badge-danger barbell-badge"></span>
+						</button>
+						<button class="btn btn-barbell btn-dark btn-lg" data-weight="35">35
+							<span class="badge badge-pill badge-danger barbell-badge"></span>
+						</button>
+						<button class="btn btn-barbell btn-dark btn-lg" data-weight="15">15
+							<span class="badge badge-pill badge-danger barbell-badge"></span>
+						</button>
 					</div><!--/.form-group-->
 
 					<div class="form-group" id="weights-on-bar">

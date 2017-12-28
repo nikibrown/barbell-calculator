@@ -27,6 +27,9 @@ $(document).ready(function() {
 	// variable to store quntity of plates elements
 	let plateQuantity = $(".plate-quantity");
 
+	// variable to store barbellBadge elements
+	let barbellBadge = $(".barbell-badge");
+
 	// add barbell weight
 	barbellBtns.on('click touch', function(e) {
 		// prevent the thing from doing the thing
@@ -35,11 +38,20 @@ $(document).ready(function() {
 		// grab the data attribute
 		let tappedBarbell = $(this).data("weight");
 
+		// grab the barbellBadge from the tappedBarbell
+		let selectedBarbellBadge = $(this).find(barbellBadge);
+
+		// show selected state using a badge + arrow
+		selectedBarbellBadge.html("&#8598;");
+
 		// convert string to a number - using parseInt here because they are integers
 		barbellWeight = (parseInt(tappedBarbell));
 
 		// setting the total text to the barbell weight
 		total.text("Weight Total: " + barbellWeight);
+
+		// on click, touch remove the selected state + data attr
+		$(this).off(e);
 	});
 
 	weightBtns.on('click touch', function (e) {
@@ -85,6 +97,9 @@ $(document).ready(function() {
 
 		// reset plateQuantity text and data attr
 		plateQuantity.text("").attr("data-quantity", "0");
+
+		// reset barbellBadge test
+		barbellBadge.text("");
 
 		// display updated weight on page
 		total.text("Weight Total: 0");

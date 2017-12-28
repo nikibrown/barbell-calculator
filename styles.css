@@ -32,10 +32,17 @@ main {
 	min-height: 50px;
 }
 
+.btn {
+	position: relative;
+}
+
+.btn:hover {
+	cursor: pointer;
+}
+
 .btn-plate {
 	border-radius: 50%;
 	margin: 10px;
-	position: relative;
 }
 
 .btn .badge {
