@@ -22,72 +22,85 @@
     <link href="styles.css" rel="stylesheet">
   </head>
 	<body>
+		<header>
+			<nav class="navbar navbar-dark bg-dark">
+				<div class="app-container">
+					<h1 class="navbar-brand">
+						<a href="index.html" class="navbar-brand">Barbell Calculator</a>
+					</h1>
+				</div><!--/.app-container-->
+			</nav>
+		</header>
+		<main>
+			<div class="app-container">
+				<form>
+					<div class="form-group">
+						<h3>Pick your barbell</h3>
+						<button class="btn btn-barbell btn-dark btn-lg" data-weight="45" id="mensbar">45</button>
+						<button class="btn btn-barbell btn-dark btn-lg" data-weight="35">35</button>
+						<button class="btn btn-barbell btn-dark btn-lg" data-weight="15">15</button>
+					</div><!--/.form-group-->
 
-		<form>
-			<h1>Barbell Calculator</h1>
+					<div class="form-group" id="weights-on-bar">
+						<h3>Pick your plates</h3>
+						<p>Only count weight on one side of the bar, we do the math! (x 2)</p>
+					</div>
 
-			<div class="form-group">
-				<h2>Pick your barbell</h2>
-				<button class="btn btn-barbell btn-dark btn-lg" data-weight="45" id="mensbar">45</button>
-				<button class="btn btn-barbell btn-dark btn-lg" data-weight="35">35</button>
-				<button class="btn btn-barbell btn-dark btn-lg" data-weight="15">15</button>
-			</div><!--/.form-group-->
+					<div class="form-group">
+						<button class="btn btn-plate btn-circle btn-danger weight-lg plate-blue" data-weight="55">55
+							<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+						</button>
+						<button class="btn btn-plate btn-circle btn-primary weight-lg plate-blue" data-weight="45">45
+							<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+						</button>
+						<button class="btn btn-plate btn-circle btn-warning weight-lg plate-yellow" data-weight="35">35
+							<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+						</button>
+						<button class="btn btn-plate btn-circle btn-success weight-lg plate-green" data-weight="25">25
+							<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+						</button>
+						<button class="btn btn-plate btn-circle btn-dark weight-lg plate-black" data-weight="15">15
+							<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+						</button>
+						<button class="btn btn-plate btn-circle btn-dark weight-lg plate-black" data-weight="10">10
+							<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+						</button>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight="5">5
+							<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+						</button>
+						<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight="2.5">2.5
+							<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+						</button>
+						<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight="1">1
+							<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+						</button>
+						<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight=".75">.75
+							<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+						</button>
+						<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight=".5">.5
+							<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+						</button>
+						<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight=".25">.25
+							<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
+						</button>
+					</div>
+				</form>
 
-			<div class="form-group" id="weights-on-bar">
-				<h2>Pick your plates</h2>
-				<p>Only count weight on one side of the bar, we do the math! (x 2)</p>
-			</div>
+				<h3 class="total">
+					Weight Total: 0
+				</h3>
 
-			<div class="form-group">
+				<button class="btn btn-danger btn-sm start-over">Oops! Start over!</button>
+			</div><!--/.app-container-->
+		</main>
 
-				<button class="btn btn-plate btn-circle btn-primary weight-lg plate-blue" data-weight="45">45
-					<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
-				</button>
-				<button class="btn btn-plate btn-circle btn-warning weight-lg plate-yellow" data-weight="35">35
-					<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
-				</button>
-				<button class="btn btn-plate btn-circle btn-success weight-lg plate-green" data-weight="25">25
-					<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
-				</button>
-				<button class="btn btn-plate btn-circle btn-dark weight-lg plate-black" data-weight="15">15
-					<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
-				</button>
-				<button class="btn btn-plate btn-circle btn-dark weight-lg plate-black" data-weight="10">10
-					<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
-				</button>
-			</div>
-			<div class="form-group">
-				<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight="5">5
-					<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
-				</button>
-				<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight="2.5">2.5
-					<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
-				</button>
-				<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight="1">1
-					<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
-				</button>
-				<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight=".75">.75
-					<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
-				</button>
-				<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight=".5">.5
-					<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
-				</button>
-				<button class="btn btn-plate btn-circle btn-dark weight-sm plate-black" data-weight=".25">.25
-					<span class="badge badge-pill badge-danger plate-quantity" data-quantity="0"></span>
-				</button>
-			</div>
-
-		</form>
-
-		<h2 class="total">
-			Weight Total: 0
-		</h2>
-
-		<button class="btn btn-danger btn-sm start-over">Oops! Start over!</button>
-
-
-		<p><small><a href="about.html">Learn more about the barbell calculator &rarr;</a></small></p>
-
+		<footer>
+			<div class="app-container">
+				<p><small><a href="about.html">Learn more about the barbell calculator &rarr;</a></small></p>
+			</div><!--/.app-container-->
+		</footer>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="script.js"></script>
 

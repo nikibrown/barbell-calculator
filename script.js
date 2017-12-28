@@ -2,7 +2,7 @@ $(document).ready(function() {
 	// TODO: display which weights you have selected visually
 	// TODO: only allow 1 barbell selection
 	// TODO show barbell with weights selected
-	
+
 	// barbell buttons
 	const barbellBtns = $(".btn-barbell");
 

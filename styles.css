@@ -1,9 +1,25 @@
-body {
-	padding: 20px;
+.app-container {
+	margin: 0 auto;
+	width: 50vw;
 }
 
-.start-over {
-	margin-bottom: 30px;
+@media screen and (max-width: 900px) {
+	.app-container {
+		margin: 0 auto;
+		width: 95%;
+	}
+}
+
+header {
+
+}
+
+footer {
+
+}
+
+main {
+	margin: 20px 0;
 }
 
 .weight-lg {
@@ -35,22 +51,22 @@ body {
 	.btn-plate.weight-lg,
 	.btn-plate.weight-sm {
 		font-size: 14px;
-		min-width: 50px;
-		min-height: 50px;
-		margin: 5px;
+		min-width: 39px;
+		min-height: 39px;
+		margin: 3px;
+	}
+}
+
+@media screen and (max-width: 330px) {
+	.btn-plate.weight-lg,
+	.btn-plate.weight-sm {
+		font-size: 12px;
+		min-width: 39px;
+		min-height: 39px;
+		margin: 2px;
 	}
 }
 
 .btn-barbell {
 	min-width: 30%;
-}
-
-form {
-	width: 50vw;
-}
-
-@media screen and (max-width: 900px) {
-	form {
-		width: 100vw;
-	}
 }
