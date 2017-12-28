@@ -37,16 +37,21 @@
 				<form>
 					<div class="form-group">
 						<h3>Pick your barbell</h3>
-						<button class="btn btn-barbell btn-dark btn-lg" data-weight="45" id="mensbar">45
-							<span class="badge badge-pill badge-danger barbell-badge"></span>
-						</button>
-						<button class="btn btn-barbell btn-dark btn-lg" data-weight="35">35
-							<span class="badge badge-pill badge-danger barbell-badge"></span>
-						</button>
-						<button class="btn btn-barbell btn-dark btn-lg" data-weight="15">15
-							<span class="badge badge-pill badge-danger barbell-badge"></span>
-						</button>
-					</div><!--/.form-group-->
+
+						<div class="" data-toggle="buttons">
+							<label class="btn btn-barbell btn-dark btn-lg btn-barbell-45" data-weight="45">
+								<input type="radio" name="options" id="option1" autocomplete="off"> 45
+								<span class="badge badge-pill badge-danger barbell-badge"></span>
+							</label>
+							<label class="btn btn-barbell btn-dark btn-lg btn-barbell-35" data-weight="35">
+								<input type="radio" name="options" id="option2" autocomplete="off"> 35
+								<span class="badge badge-pill badge-danger barbell-badge"></span>
+							</label>
+							<label class="btn btn-barbell btn-dark btn-lg btn-barbell-15" data-weight="15">
+								<input type="radio" name="options" id="option3" autocomplete="off"> 15
+								<span class="badge badge-pill badge-danger barbell-badge"></span>
+							</label>
+						</div>
 
 					<div class="form-group" id="weights-on-bar">
 						<h3>Pick your plates</h3>
@@ -109,7 +114,8 @@
 			</div><!--/.app-container-->
 		</footer>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 		<script src="script.js"></script>
-
 	</body>
 </html>

@@ -42,7 +42,17 @@ main {
 
 .btn-plate {
 	border-radius: 50%;
+	border: none;
 	margin: 10px;
+}
+
+
+
+
+.btn:focus,
+.btn:active,
+.btn:not([disabled]):not(.disabled):active {
+	box-shadow: none!important;
 }
 
 .btn .badge {
@@ -75,5 +85,53 @@ main {
 }
 
 .btn-barbell {
+	border-width: 4px;
 	min-width: 30%;
+}
+
+.btn-dark:not([disabled]):not(.disabled).active,
+.btn-dark:not([disabled]):not(.disabled):active {
+    color: #fff;
+    background-color: #1d2124;
+    border-color: inherit;
+    box-shadow: none;
+}
+
+
+.btn-barbell:first-child {
+	margin-right: 5px;
+}
+
+.btn-barbell:last-child {
+	margin-left: 5px;
+}
+
+.btn-dark.btn-barbell-45:not([disabled]):not(.disabled).active,
+.btn-dark.btn-barbell-45:not([disabled]):not(.disabled):active,
+.btn-barbell-45  {
+	border-color: var(--blue);
+}
+
+.btn-dark.btn-barbell-45:hover {
+	border-color: #0062cc;
+}
+
+.btn-dark.btn-barbell-35:not([disabled]):not(.disabled).active,
+.btn-dark.btn-barbell-35:not([disabled]):not(.disabled):active,
+.btn-barbell-35  {
+	border-color: var(--yellow);
+}
+
+.btn-dark.btn-barbell-35:hover {
+	border-color: #d39e00;
+}
+
+.btn-dark.btn-barbell-15:not([disabled]):not(.disabled).active,
+.btn-dark.btn-barbell-15:not([disabled]):not(.disabled):active,
+.btn-barbell-15  {
+	border-color: #ccc;
+}
+
+.btn-dark.btn-barbell-15:hover {
+	border-color: var(--gray);
 }

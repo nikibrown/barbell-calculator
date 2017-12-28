@@ -19,10 +19,10 @@ $(document).ready(function() {
 	let weightsArray = [ ];
 
 	// variable to store the barbell weight selected
-	let barbellWeight;
+	let barbellWeight = 0;
 
 	// variable to store the weightsArray + barbellWeight
-	let totalWeight;
+	let totalWeight = 0;
 
 	// variable to store quntity of plates elements
 	let plateQuantity = $(".plate-quantity");
@@ -35,8 +35,8 @@ $(document).ready(function() {
 		// prevent the thing from doing the thing
 		e.preventDefault();
 
-		// grab the data attribute
-		let tappedBarbell = $(this).data("weight");
+		// reset all the barbellBadges html
+		barbellBadge.html("");
 
 		// grab the barbellBadge from the tappedBarbell
 		let selectedBarbellBadge = $(this).find(barbellBadge);
@@ -44,11 +44,14 @@ $(document).ready(function() {
 		// show selected state using a badge + arrow
 		selectedBarbellBadge.html("&#8598;");
 
+		// grab the data attribute
+		let tappedBarbell = $(this).data("weight");
+
 		// convert string to a number - using parseInt here because they are integers
 		barbellWeight = (parseInt(tappedBarbell));
 
 		// setting the total text to the barbell weight
-		total.text("Weight Total: " + barbellWeight);
+		total.text("Weight Total: " + (totalWeight + barbellWeight));
 
 		// on click, touch remove the selected state + data attr
 		$(this).off(e);
@@ -81,7 +84,7 @@ $(document).ready(function() {
 			total.text("Weight Total: " + (totalWeight + barbellWeight));
 
 		} else {
-			alert("Hold on there meathead. Please select barbell weight first!");
+			alert("💪 Hold on there meathead. Please select barbell weight first!");
 		}
 	});
 
