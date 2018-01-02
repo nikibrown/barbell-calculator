@@ -52,9 +52,6 @@ $(document).ready(function() {
 
 		// setting the total text to the barbell weight
 		total.text("Weight Total: " + (totalWeight + barbellWeight));
-
-		// on click, touch remove the selected state + data attr
-		$(this).off(e);
 	});
 
 	weightBtns.on('click touch', function (e) {
