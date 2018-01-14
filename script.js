@@ -62,6 +62,7 @@ $(document).ready(function() {
 		if (barbellWeight) {
 			// convert the string to a number
 			let weight = (parseFloat($(this).data("weight")));
+			
 			// grab the data-quantity attribute and turn it into a number since its a string
 			let tappedPlateQuantity = parseInt($(this).find(plateQuantity).attr("data-quantity"));
 

@@ -95,6 +95,10 @@ $(document).ready(function() {
 		// set barbellWeight to 0
 		barbellWeight = 0;
 
+		// // set total to 0 so when you you start over you don't have a stored plate weight
+		// // that causes your total to be too high.
+		totalWeight = 0;
+
 		// reset plateQuantity text and data attr
 		plateQuantity.text("").attr("data-quantity", "0");
 
