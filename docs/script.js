@@ -1,4 +1,4 @@
-$(document).ready(function() {
+	$(document).ready(function() {
 	// TODO: display which weights you have selected visually
 	// TODO: only allow 1 barbell selection
 	// TODO show barbell with weights selected
@@ -62,6 +62,7 @@ $(document).ready(function() {
 		if (barbellWeight) {
 			// convert the string to a number
 			let weight = (parseFloat($(this).data("weight")));
+
 			// grab the data-quantity attribute and turn it into a number since its a string
 			let tappedPlateQuantity = parseInt($(this).find(plateQuantity).attr("data-quantity"));
 
@@ -71,7 +72,7 @@ $(document).ready(function() {
 			// update plateQuantity data & text
 			plateQuantityBadge.attr('data-quantity', tappedPlateQuantity + 2 ).text(tappedPlateQuantity + 2);
 
-			// add the number to the weightsArray
+			// add the number to the weightsArrayh
 			weightsArray.push(weight*2);
 
 			// add all the values in the array
@@ -95,8 +96,7 @@ $(document).ready(function() {
 		// set barbellWeight to 0
 		barbellWeight = 0;
 
-		// // set total to 0 so when you you start over you don't have a stored plate weight
-		// // that causes your total to be too high.
+		// set totalWeight to 0;
 		totalWeight = 0;
 
 		// reset plateQuantity text and data attr
