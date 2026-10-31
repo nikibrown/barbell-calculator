@@ -1,6 +1,15 @@
 import React from "react"
 import Head from "next/head"
-import "../styles.scss"
+import { Saira } from "next/font/google"
+import "../styles.css"
+
+// Saira (variable font). The width axis gives us the condensed style.
+const saira = Saira({
+    subsets: ["latin"],
+    axes: ["wdth"],
+    variable: "--font-saira",
+    display: "swap",
+})
 
 function MyApp({ Component, pageProps }) {
     return (
@@ -25,7 +34,7 @@ function MyApp({ Component, pageProps }) {
                 <meta name="author" content="Niki Brown" />
                 <meta
                     name="viewport"
-                    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+                    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
                 />
 
                 <link
@@ -47,9 +56,20 @@ function MyApp({ Component, pageProps }) {
                 />
                 <link rel="manifest" href="/site.webmanifest" />
                 <meta name="msapplication-TileColor" content="#da532c" />
-                <meta name="theme-color" content="#ffffff" />
+                <meta
+                    name="theme-color"
+                    media="(prefers-color-scheme: light)"
+                    content="#C3C7CC"
+                />
+                <meta
+                    name="theme-color"
+                    media="(prefers-color-scheme: dark)"
+                    content="#172530"
+                />
             </Head>
-            <Component {...pageProps} />
+            <div className={saira.variable}>
+                <Component {...pageProps} />
+            </div>
         </>
     )
 }

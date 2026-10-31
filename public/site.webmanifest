@@ -1,6 +1,9 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "Barbell Calculator",
+    "short_name": "Barbell Calc",
+    "description": "A free calculator that helps you add up the weight on your barbell",
+    "start_url": "/",
+    "scope": "/",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -13,7 +16,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#c3c7cc",
+    "background_color": "#d9dbde",
     "display": "standalone"
 }

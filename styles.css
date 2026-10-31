@@ -1,0 +1,729 @@
+/* =========================================================
+   Barbell Calculator 2.0 styles
+   Plain CSS. All colors are custom properties, so light and
+   dark mode only swap the variables at the top.
+   ========================================================= */
+
+/* ---------- Theme colors ---------- */
+
+:root {
+    color-scheme: light;
+
+    --bg: #d9dbde; /* page */
+    --surface: #c3c7cc; /* header, footer, toggle tracks */
+    --panel: #ffffff; /* about popup */
+    --text: #16181a;
+    --focus: #16181a;
+
+    /* undo, reset, selected toggles, footer buttons */
+    --active: #5f646b;
+    --active-text: #ffffff;
+
+    --plate-red: #c8321f;
+    --plate-blue: #2560c8;
+    --plate-yellow: #f2c230;
+    --plate-green: #1f7a45;
+    --plate-black: #2e3134;
+    --badge: #ffffff;
+    --badge-text: #16181a;
+
+    --bar: #8a8a8a;
+    --bar-label: #f2efe9;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #22323d;
+    --surface: #172530;
+    --panel: #2c3f4c;
+    --text: #f2efe9;
+    --focus: #f2efe9;
+    --active: #5e7686;
+    --active-text: #ffffff;
+    --plate-black: #0e0e0e;
+    --bar-label: #e6e2da;
+}
+
+/* If JavaScript is off, still follow the device setting. */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        color-scheme: dark;
+        --bg: #22323d;
+        --surface: #172530;
+        --panel: #2c3f4c;
+        --text: #f2efe9;
+        --focus: #f2efe9;
+        --active: #5e7686;
+        --active-text: #ffffff;
+        --plate-black: #0e0e0e;
+        --bar-label: #e6e2da;
+    }
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+a {
+    color: var(--text);
+}
+
+button,
+input {
+    font: inherit;
+    font-stretch: inherit;
+    color: inherit;
+}
+
+button:hover,
+label:hover {
+    cursor: pointer;
+}
+
+:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+}
+
+/* Small uppercase headings: Units, Barbell, Plates, etc. */
+.label {
+    display: block;
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.unit-small {
+    margin-left: 2px;
+    font-size: 12px;
+}
+
+/* ---------- Layout ---------- */
+
+/* next/font sets --font-saira on the wrapper div in _app.js,
+   so the font is applied here rather than on body. */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    font-family: var(--font-saira), "Arial Narrow", sans-serif;
+    font-stretch: 80%;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 30rem;
+    margin: 0 auto;
+}
+
+.container {
+    width: 100%;
+    padding: 0 16px;
+}
+
+/* ---------- Icon buttons (undo, reset, back, footer) ---------- */
+
+.icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    background: var(--active);
+    color: var(--active-text);
+    text-decoration: none;
+    transition: filter 0.2s ease;
+}
+
+.icon-button:hover {
+    filter: brightness(1.1);
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+    background: var(--surface);
+}
+
+.site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    max-width: 30rem;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.site-header h1 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* ---------- Total weight + barbell ---------- */
+
+.total-weight-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 15rem;
+}
+
+/* The number is centered between the header and the barbell. */
+.total-weight {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    font-size: 120px;
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+}
+
+.total-weight small {
+    margin-left: 6px;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.plates-on-barbell-section {
+    margin: 0 16px 28px;
+}
+
+/* The bar is a line across the page margins. It's an outline until a
+   barbell is picked, then it fills in. */
+.barbell-container {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 154px;
+    height: 102px;
+}
+
+.barbell-container::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: -1;
+    height: 10px;
+    margin-top: -5px;
+    border: 2px solid var(--bar);
+    background: transparent;
+}
+
+.barbell-container.barbell-selected::after {
+    border: 0;
+    background: var(--bar);
+}
+
+.plates-on-barbell {
+    display: flex;
+    align-items: center;
+    flex: 0 1 auto;
+    min-width: 0;
+}
+
+/* Plates touch; a 1px border in the page color fakes the gaps. */
+.bar-plate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 1 auto;
+    min-width: 8px;
+    overflow: hidden;
+    border: 1px solid var(--bg);
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.bar-plate__num {
+    color: var(--bar-label);
+    writing-mode: vertical-rl;
+    white-space: nowrap;
+}
+
+.plate--yellow .bar-plate__num {
+    color: #111111;
+}
+
+.left-plates .bar-plate__num {
+    transform: rotate(180deg);
+}
+
+.bar-plate--large {
+    height: 102px;
+    font-size: 12px;
+}
+
+.bar-plate--small {
+    width: 16px;
+    height: 64px;
+    font-size: 10px;
+}
+
+/* Heavier plates are wider. */
+.bar-plate--large.plate--red {
+    width: 32px;
+}
+.bar-plate--large.plate--blue {
+    width: 28px;
+}
+.bar-plate--large.plate--yellow {
+    width: 24px;
+}
+.bar-plate--large.plate--green {
+    width: 20px;
+}
+.bar-plate--large.plate--black {
+    width: 18px;
+}
+
+/* ---------- Plate colors (bar and buttons) ---------- */
+
+.plate--red {
+    background: var(--plate-red);
+    color: #ffffff;
+}
+.plate--blue {
+    background: var(--plate-blue);
+    color: #ffffff;
+}
+.plate--yellow {
+    background: var(--plate-yellow);
+    color: #111111;
+}
+.plate--green {
+    background: var(--plate-green);
+    color: #ffffff;
+}
+.plate--black {
+    background: var(--plate-black);
+    color: #f2efe9;
+}
+
+/* ---------- Units / barbell toggles ---------- */
+
+.flex-container {
+    display: flex;
+    gap: 12px;
+}
+
+.column {
+    min-width: 0;
+}
+
+.column--grow {
+    flex: 1;
+}
+
+.segmented {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 12px;
+    background: var(--surface);
+}
+
+/* Units: real radio inputs, visually hidden, styled through the label. */
+.segmented input[type="radio"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.segmented label,
+.barbell-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 44px;
+    min-width: 52px;
+    padding: 0 8px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.segmented input[type="radio"]:checked + label {
+    background: var(--active);
+    color: var(--active-text);
+    font-weight: 700;
+}
+
+.segmented input[type="radio"]:focus-visible + label {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+}
+
+/* Barbell buttons lock after one is picked (until reset). */
+.barbell-button-wrapper {
+    flex: 1;
+    display: flex;
+}
+
+.barbell-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.barbell-button.selected:disabled {
+    background: var(--active);
+    color: var(--active-text);
+    font-weight: 700;
+    opacity: 1;
+}
+
+/* ---------- Plate buttons ---------- */
+
+.plates-section {
+    padding: 20px 0 24px;
+}
+
+.large-plates,
+.small-plates {
+    display: grid;
+}
+
+.large-plates {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.small-plates {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.plate-wrapper {
+    display: block;
+    min-width: 0;
+}
+
+.plate-button {
+    position: relative;
+    width: 100%;
+    border: 0;
+    border-radius: 16px;
+    font-weight: 700;
+    transition:
+        transform 0.1s ease,
+        filter 0.2s ease;
+}
+
+.plate-button:hover {
+    filter: brightness(1.08);
+}
+
+.plate-button:active {
+    transform: scale(0.97);
+}
+
+.plate-button--large {
+    height: 76px;
+    font-size: 30px;
+}
+
+.plate-button--small {
+    height: 56px;
+    padding: 12px 0 0;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.plate-button__unit {
+    margin-left: 2px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.plate-button--small .plate-button__unit {
+    margin-left: 1px;
+    font-size: 12px;
+}
+
+/* Count badge sits inside the top-right corner. */
+.plate-count-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 5px;
+    border-radius: 11px;
+    background: var(--badge);
+    color: var(--badge-text);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 22px;
+}
+
+.plate-button--small .plate-count-badge {
+    top: 4px;
+    right: 4px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 3px;
+    border-radius: 8px;
+    font-size: 11px;
+    line-height: 16px;
+}
+
+/* ---------- Reverse calculator ---------- */
+
+.reverse-calculator .barbells-section .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 24px;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    padding: 0 16px;
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: inset 0 0 0 2px var(--active);
+}
+
+.field:focus-within {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+}
+
+.field input {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: 36px;
+    font-weight: 700;
+    outline: none;
+    -moz-appearance: textfield;
+}
+
+.field input::-webkit-outer-spin-button,
+.field input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.field__unit {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* ---------- Buttons ---------- */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--active);
+    color: var(--active-text);
+    font-weight: 700;
+    text-decoration: none;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: filter 0.2s ease;
+}
+
+.button:hover {
+    filter: brightness(1.1);
+    cursor: pointer;
+}
+
+.button--block {
+    width: 100%;
+    height: 60px;
+    border-radius: 14px;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+    position: relative;
+    background: var(--surface);
+}
+
+.site-footer__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 30rem;
+    margin: 0 auto;
+    padding: 12px 16px;
+}
+
+.site-footer__link {
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.2s ease;
+}
+
+.site-footer__link:hover {
+    text-decoration-color: currentColor;
+}
+
+.site-footer__actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* Show the icon for the theme you'd switch to. */
+.theme-toggle__moon,
+.theme-toggle__sun {
+    display: inline-flex;
+}
+
+.theme-toggle__sun,
+:root[data-theme="dark"] .theme-toggle__moon {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle__sun {
+    display: inline-flex;
+}
+
+/* ---------- About popup ---------- */
+
+.info-dialog {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: calc(100% + 12px);
+    z-index: 10;
+    max-width: 26rem;
+    margin: 0 auto;
+    padding: 24px 20px 20px;
+    border-radius: 16px;
+    background: var(--panel);
+    color: var(--text);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: info-in 0.15s ease-out;
+}
+
+@keyframes info-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}
+
+.info-dialog__close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+}
+
+.info-dialog .label {
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.info-dialog__text {
+    margin-bottom: 20px;
+    font-size: 17px;
+    line-height: 1.45;
+}
+
+.info-dialog__small {
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+.info-dialog a:not(.button) {
+    font-weight: 600;
+}
+
+/* Added briefly by the footer theme toggle so light/dark fades. */
+@media (prefers-reduced-motion: no-preference) {
+    .theme-transition,
+    .theme-transition *,
+    .theme-transition *::before,
+    .theme-transition *::after {
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease,
+            fill 0.2s ease,
+            stroke 0.2s ease !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}

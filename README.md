@@ -6,6 +6,5 @@ Because I am bad at math and trying to be less bad at Javascript 😎
 
 -   💻 React
 -   ⏭️ Next.js
--   💅🏾 Styled Components
--   📖 Storybook
+-   🎨 Plain CSS with light and dark themes (`styles.css`)
 -   🌐 Vercel
