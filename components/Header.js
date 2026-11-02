@@ -74,7 +74,11 @@ export default function Header({ undoLastPlate, resetEverything }) {
         <>
             <BannerWrapper>
                 <p>
-                    <Link href="https://nikibrown.link/bc-new">
+                    <Link
+                        href="https://nikibrown.link/bc-new"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         <span>New</span> Preview Barbell Calculator 2.0 &rarr;
                     </Link>
                 </p>
