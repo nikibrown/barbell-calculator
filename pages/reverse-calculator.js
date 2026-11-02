@@ -196,6 +196,12 @@ export default function ReverseCalculator() {
                                     />
                                 ))}
                             </div>
+
+                            {barbell && (
+                                <span className="bar-weight">
+                                    {barbellWeight}
+                                </span>
+                            )}
                         </div>
                     </section>
                 </section>

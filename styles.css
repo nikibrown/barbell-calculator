@@ -252,8 +252,8 @@ main {
     right: 0;
     top: 50%;
     z-index: -1;
-    height: 10px;
-    margin-top: -5px;
+    height: 14px;
+    margin-top: -7px;
     border: 2px solid var(--bar);
     background: transparent;
 }
@@ -261,6 +261,19 @@ main {
 .barbell-container.barbell-selected::after {
     border: 0;
     background: var(--bar);
+}
+
+/* Selected barbell's weight, printed on the middle of the bar. */
+.bar-weight {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #111111;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14px;
+    white-space: nowrap;
 }
 
 .plates-on-barbell {

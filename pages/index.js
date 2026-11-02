@@ -25,6 +25,9 @@ export default function Calculator() {
     // state of barbells - disable after barbell is selected - false by default
     const [barbell, setBarbell] = useState(false)
 
+    // weight of the selected barbell, shown on the middle of the bar
+    const [barbellWeight, setBarbellWeight] = useState(0)
+
     // reset button
     const [reset, setReset] = useState(false)
 
@@ -60,6 +63,7 @@ export default function Calculator() {
     const addBarbellWeight = (barbellWeight) => {
         setWeight(weight + barbellWeight)
         setBarbell(true)
+        setBarbellWeight(barbellWeight)
     }
 
     // Add undo btn functionality:
@@ -152,6 +156,12 @@ export default function Calculator() {
                                     />
                                 ))}
                             </div>
+
+                            {barbell && (
+                                <span className="bar-weight">
+                                    {barbellWeight}
+                                </span>
+                            )}
                         </div>
                     </section>
                 </section>
