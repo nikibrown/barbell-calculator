@@ -1,41 +1,4 @@
-import React, { useState, useEffect } from "react"
-import styled from "styled-components"
-import { designTokens } from "./designTokens"
-
-const BarbellButtonWrapper = styled.span`
-    display: "inline-block";
-`
-
-const BarbellButton = styled.button`
-    color: #fff;
-    background-color: ${designTokens.colors.gray};
-    display: inline-block;
-    margin: 4px 8px;
-    text-align: center;
-    text-decoration: none;
-    vertical-align: middle;
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: none;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
-
-    &:hover {
-        background-color: ${designTokens.colors.grayHover};
-    }
-
-    &:disabled {
-        background-color: #839896;
-        cursor: not-allowed;
-        opacity: 0.7;
-        &:hovered {
-            cursor: not-allowed;
-        }
-        &.selected {
-            background-color: ${designTokens.colors.black};
-            opacity: 1;
-        }
-    }
-`
+import { useState, useEffect } from "react"
 
 export default function Barbell({
     weightNum,
@@ -61,15 +24,19 @@ export default function Barbell({
     }, [reset])
 
     return (
-        <BarbellButtonWrapper style={{}} onClick={updateBarbell}>
-            <BarbellButton
+        <span className="barbell-button-wrapper" onClick={updateBarbell}>
+            <button
                 type="button"
-                className={`${barbellSelected ? "selected" : null}`}
+                className={`barbell-button ${barbellSelected ? "selected" : ""}`}
                 onClick={onPress}
                 disabled={disableBarbell}
+                aria-pressed={barbellSelected}
             >
-                {weightNum} {unit}
-            </BarbellButton>
-        </BarbellButtonWrapper>
+                <span>
+                    {weightNum}
+                    <span className="unit-small">{unit}</span>
+                </span>
+            </button>
+        </span>
     )
 }

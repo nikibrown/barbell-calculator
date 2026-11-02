@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import { useState } from "react"
+import Head from "next/head"
 import HeaderNoBanner from "../components/HeaderNoBanner"
 import Footer from "../components/Footer"
 import BarbellButton from "../components/BarbellButton"
@@ -56,64 +57,42 @@ export default function ReverseCalculator() {
         // subtract barbell weight
         totalWeight = totalWeight - barbellWeight
 
-        // TODO: use data/weightData.js
-        let plates = {
-            // { weight: 55, plateCount: 0 }, // who actually has 55# plates????
-            pounds: [
-                { weight: 45, plateCount: 0, size: "large", color: "blue" },
-                { weight: 35, plateCount: 0, size: "large", color: "yellow" },
-                { weight: 25, plateCount: 0, size: "large", color: "green" },
-                { weight: 15, plateCount: 0, size: "large", color: "black" },
-                { weight: 10, plateCount: 0, size: "large", color: "black" },
-                { weight: 5, plateCount: 0, size: "small", color: "black" },
-                { weight: 2.5, plateCount: 0, size: "small", color: "black" },
-                { weight: 1, plateCount: 0, size: "small", color: "black" },
-                { weight: 0.75, plateCount: 0, size: "small", color: "black" },
-                { weight: 0.5, plateCount: 0, size: "small", color: "black" },
-                { weight: 0.25, plateCount: 0, size: "small", color: "black" },
-            ],
-            kilos: [
-                { weight: 20, plateCount: 0, size: "large", color: "blue" },
-                { weight: 15, plateCount: 0, size: "large", color: "yellow" },
-                { weight: 10, plateCount: 0, size: "large", color: "green" },
-                { weight: 5, plateCount: 0, size: "small", color: "black" },
-                { weight: 2.5, plateCount: 0, size: "small", color: "black" },
-                { weight: 2, plateCount: 0, size: "small", color: "black" },
-                { weight: 1.5, plateCount: 0, size: "small", color: "black" },
-                { weight: 1, plateCount: 0, size: "small", color: "black" },
-                { weight: 0.5, plateCount: 0, size: "small", color: "black" },
-            ],
-        }
-
         // while loop - iterate through until we run out of weight
         while (totalWeight > 0) {
-            // need if here for pounds / kilos
-
+            // plates from data/weightData.js, heaviest first
             let selectedPlates
 
             isPounds
-                ? (selectedPlates = plates.pounds)
-                : (selectedPlates = plates.kilos)
+                ? (selectedPlates = [
+                      ...weightData.plates.lbLargePlates,
+                      ...weightData.plates.lbSmallPlates,
+                  ])
+                : (selectedPlates = [
+                      ...weightData.plates.kgLargePlates,
+                      ...weightData.plates.kgSmallPlates,
+                  ])
 
             selectedPlates.forEach((plate) => {
+                let plateCount = 0
+
                 if (totalWeight / plate.weight >= 2) {
                     // set plateCount and round down
-                    plate.plateCount = Math.floor(totalWeight / plate.weight)
+                    plateCount = Math.floor(totalWeight / plate.weight)
 
                     // if plateCount is odd we probably dont want that...
-                    if (plate.plateCount % 2 !== 0) {
+                    if (plateCount % 2 !== 0) {
                         // odd plateCount - lets get rid of one of them
-                        plate.plateCount = plate.plateCount - 1
+                        plateCount = plateCount - 1
                     }
 
                     // subtract plateCount from totalWeight
-                    totalWeight = totalWeight - plate.plateCount * plate.weight
+                    totalWeight = totalWeight - plateCount * plate.weight
                 }
 
                 // add weights to barbell
-                if (plate.plateCount) {
+                if (plateCount) {
                     // addWeight plateCount / 2 number of times (each side)
-                    for (let i = 0; i < plate.plateCount / 2; i++) {
+                    for (let i = 0; i < plateCount / 2; i++) {
                         addWeightToBarbell(plate)
                     }
                 }
@@ -175,149 +154,171 @@ export default function ReverseCalculator() {
 
     return (
         <div className="app-container reverse-calculator">
+            <Head>
+                <title>🏋️💪 Reverse Barbell Calculator</title>
+            </Head>
+
             <HeaderNoBanner resetEverything={resetEverything} />
 
             <main>
-                <section className="total-weight-section text-center">
-                    <Container>
-                        <h2>
+                <section className="total-weight-section">
+                    <h2 className="total-weight" aria-live="polite">
+                        <span>
                             {displayWeight ? <>{displayWeight}</> : <>&nbsp;</>}
-
                             <small>{isPounds ? "lb" : "kg"}</small>
-                        </h2>
-                        <section className="plates-on-barbell-section">
-                            <div
-                                className={
-                                    barbell
-                                        ? "barbell-container barbell-selected"
-                                        : "barbell-container"
-                                }
-                            >
-                                <div className="plates-on-barbell left-plates">
-                                    {platesOnBarbellLeft.map((plate, index) => (
-                                        <PlateOnBarbell
-                                            plateSize={plate.plateSize}
-                                            plateColor={plate.plateColor}
-                                            weightNum={plate.weightNum}
-                                            key={index}
-                                        />
-                                    ))}
-                                </div>
-                                <div className="plates-on-barbell right-plates">
-                                    {platesOnBarbellRight.map(
-                                        (plate, index) => (
-                                            <PlateOnBarbell
-                                                plateSize={plate.plateSize}
-                                                plateColor={plate.plateColor}
-                                                weightNum={plate.weightNum}
-                                                key={index}
-                                            />
-                                        )
-                                    )}
-                                </div>
+                        </span>
+                    </h2>
+                    <section className="plates-on-barbell-section">
+                        <div
+                            className={
+                                barbell
+                                    ? "barbell-container barbell-selected"
+                                    : "barbell-container"
+                            }
+                        >
+                            <div className="plates-on-barbell left-plates">
+                                {platesOnBarbellLeft.map((plate, index) => (
+                                    <PlateOnBarbell
+                                        plateSize={plate.plateSize}
+                                        plateColor={plate.plateColor}
+                                        weightNum={plate.weightNum}
+                                        key={index}
+                                    />
+                                ))}
                             </div>
-                        </section>
-                    </Container>
+                            <div className="plates-on-barbell right-plates">
+                                {platesOnBarbellRight.map((plate, index) => (
+                                    <PlateOnBarbell
+                                        plateSize={plate.plateSize}
+                                        plateColor={plate.plateColor}
+                                        weightNum={plate.weightNum}
+                                        key={index}
+                                    />
+                                ))}
+                            </div>
+
+                            {barbell && (
+                                <span className="bar-weight">
+                                    {barbellWeight}
+                                </span>
+                            )}
+                        </div>
+                    </section>
                 </section>
 
                 <section className="barbells-section">
                     <Container>
-                        <div className="grid-container">
-                            <div className="column weight-input">
-                                <h3>Enter Weight</h3>
+                        <div className="flex-container">
+                            <div className="column weight-units">
+                                <h3 className="label" id="units-label">
+                                    Units
+                                </h3>
+
+                                <div
+                                    className="segmented"
+                                    role="radiogroup"
+                                    aria-labelledby="units-label"
+                                >
+                                    <input
+                                        type="radio"
+                                        value="lb"
+                                        id="lb"
+                                        name="unit"
+                                        defaultChecked
+                                        onClick={() => switchUnits(true)}
+                                    />
+                                    <label htmlFor="lb">lb</label>
+
+                                    <input
+                                        type="radio"
+                                        value="kg"
+                                        id="kg"
+                                        name="unit"
+                                        onClick={() => switchUnits(false)}
+                                    />
+                                    <label htmlFor="kg">kg</label>
+                                </div>
+                            </div>
+
+                            <div className="column column--grow barbell">
+                                <h3 className="label" id="barbells-label">
+                                    Barbell
+                                </h3>
+
+                                <div
+                                    className="segmented"
+                                    role="group"
+                                    aria-labelledby="barbells-label"
+                                >
+                                    {isPounds
+                                        ? weightData.barbells.lbBarbells.map(
+                                              (barbellWeight, index) => (
+                                                  <BarbellButton
+                                                      weightNum={barbellWeight}
+                                                      onPress={() => {
+                                                          addBarbellWeight(
+                                                              barbellWeight
+                                                          )
+                                                      }}
+                                                      disableBarbell={barbell}
+                                                      reset={reset}
+                                                      setReset={setReset}
+                                                      key={index}
+                                                      unit={"lb"}
+                                                  />
+                                              )
+                                          )
+                                        : weightData.barbells.kgBarbells.map(
+                                              (barbellWeight, index) => (
+                                                  <BarbellButton
+                                                      weightNum={barbellWeight}
+                                                      onPress={() => {
+                                                          addBarbellWeight(
+                                                              barbellWeight
+                                                          )
+                                                      }}
+                                                      disableBarbell={barbell}
+                                                      reset={reset}
+                                                      setReset={setReset}
+                                                      key={index}
+                                                      unit={"kg"}
+                                                  />
+                                              )
+                                          )}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="weight-input">
+                            <label className="label" htmlFor="weight-input">
+                                Enter Weight
+                            </label>
+                            <div className="field">
                                 <input
+                                    id="weight-input"
                                     type="number"
                                     onChange={handleWeightInputChange}
                                     value={totalWeight}
                                     inputMode="decimal"
                                 />
-                            </div>
-                            <div className="column weight-units">
-                                <h3>Select Units</h3>
-
-                                <div className="weight-units-container">
-                                    <div className="weight-unit">
-                                        <input
-                                            type="radio"
-                                            value="lb"
-                                            id="lb"
-                                            name="unit"
-                                            defaultChecked
-                                            onClick={() => switchUnits(true)}
-                                        />
-                                        <label htmlFor="lb">LB</label>
-                                    </div>
-
-                                    <div className="weight-unit">
-                                        <input
-                                            type="radio"
-                                            value="kg"
-                                            id="kg"
-                                            name="unit"
-                                            onClick={() => switchUnits(false)}
-                                        />
-                                        <label htmlFor="kg">KG</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="column barbell">
-                                <h3>Select Barbell</h3>
-
-                                {isPounds
-                                    ? weightData.barbells.lbBarbells.map(
-                                          (barbellWeight, index) => (
-                                              <BarbellButton
-                                                  weightNum={barbellWeight}
-                                                  onPress={() => {
-                                                      addBarbellWeight(
-                                                          barbellWeight
-                                                      )
-                                                  }}
-                                                  disableBarbell={barbell}
-                                                  reset={reset}
-                                                  setReset={setReset}
-                                                  key={index}
-                                                  unit={"lb"}
-                                              />
-                                          )
-                                      )
-                                    : weightData.barbells.kgBarbells.map(
-                                          (barbellWeight, index) => (
-                                              <BarbellButton
-                                                  weightNum={barbellWeight}
-                                                  onPress={() => {
-                                                      addBarbellWeight(
-                                                          barbellWeight
-                                                      )
-                                                  }}
-                                                  disableBarbell={barbell}
-                                                  reset={reset}
-                                                  setReset={setReset}
-                                                  key={index}
-                                                  unit={"kg"}
-                                              />
-                                          )
-                                      )}
-                            </div>
-
-                            <div className="column calculate-button">
-                                <input
-                                    className="btn btn-primary"
-                                    type="submit"
-                                    value="💪 Calculate Plates"
-                                    onClick={() => {
-                                        reverseCalculateBarbellWeights(
-                                            totalWeight
-                                        )
-                                    }}
-                                />
+                                <span className="field__unit">
+                                    {isPounds ? "lb" : "kg"}
+                                </span>
                             </div>
                         </div>
+
+                        <input
+                            className="button button--block"
+                            type="submit"
+                            value="Calculate Plates"
+                            onClick={() => {
+                                reverseCalculateBarbellWeights(totalWeight)
+                            }}
+                        />
                     </Container>
                 </section>
             </main>
-            <Footer />
+            <Footer link={{ href: "/", label: "\u2190 Barbell calculator" }} />
             <GoogleAnalytics gaId="G-PKWXFSGSLF" />
         </div>
     )

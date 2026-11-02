@@ -1,12 +1,18 @@
 {
+    "name": "barbell-calculator",
+    "version": "2.0.0",
     "private": true,
+    "description": "A free calculator that helps you add up the weight on your barbell",
+    "author": "Niki Brown",
+    "homepage": "https://barbellcalculator.com",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nikibrown/barbell-calculator.git"
+    },
     "scripts": {
         "dev": "next",
         "build": "next build",
-        "start": "next start",
-        "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build",
-        "chromatic": "npx chromatic --project-token=chpt_0b981eff7c2c305"
+        "start": "next start"
     },
     "dependencies": {
         "@next/third-parties": "^14.2.3",
@@ -14,28 +20,6 @@
         "eslint-config-next": "^14.2.3",
         "next": "^14.2.3",
         "react": "^18.3.1",
-        "react-dom": "^18.3.1",
-        "sass": "^1.62.1",
-        "styled-components": "^5.3.11"
-    },
-    "devDependencies": {
-        "@babel/preset-env": "^7.21.5",
-        "@babel/preset-react": "^7.18.6",
-        "@storybook/addon-essentials": "^7.0.10",
-        "@storybook/addon-interactions": "^7.0.10",
-        "@storybook/addon-links": "^7.0.10",
-        "@storybook/addon-styling": "^1.0.6",
-        "@storybook/blocks": "^7.0.10",
-        "@storybook/react": "^7.0.10",
-        "@storybook/react-webpack5": "^7.0.10",
-        "@storybook/testing-library": "^0.0.14-next.2",
-        "babel-plugin-styled-components": "^2.1.3",
-        "chromatic": "^6.17.4",
-        "prop-types": "^15.8.1",
-        "storybook": "^7.0.10"
-    },
-    "name": "",
-    "version": "",
-    "readme": "ERROR: No README data found!",
-    "_id": "@"
+        "react-dom": "^18.3.1"
+    }
 }

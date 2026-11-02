@@ -1,35 +1,20 @@
-import React from "react"
 import Document, { Html, Head, Main, NextScript } from "next/document"
-import { ServerStyleSheet } from "styled-components"
+
+// Sets the saved theme (or the device's light/dark setting) before the
+// page paints, so the wrong theme never flashes on load.
+const themeScript = `
+(function () {
+    try {
+        var theme = localStorage.getItem("theme");
+        if (theme !== "light" && theme !== "dark") {
+            theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.dataset.theme = theme;
+    } catch (e) {}
+})();
+`
 
 export default class MyDocument extends Document {
-    static async getInitialProps(ctx) {
-        const sheet = new ServerStyleSheet()
-        const originalRenderPage = ctx.renderPage
-
-        try {
-            ctx.renderPage = () =>
-                originalRenderPage({
-                    enhanceApp: (App) => (props) =>
-                        sheet.collectStyles(<App {...props} />),
-                })
-
-            const initialProps = await Document.getInitialProps(ctx)
-
-            return {
-                ...initialProps,
-                styles: (
-                    <>
-                        {initialProps.styles}
-                        {sheet.getStyleElement()}
-                    </>
-                ),
-            }
-        } finally {
-            sheet.seal()
-        }
-    }
-
     render() {
         return (
             <Html lang="en">
@@ -37,6 +22,7 @@ export default class MyDocument extends Document {
                     <meta charSet="utf-8" />
                 </Head>
                 <body>
+                    <script dangerouslySetInnerHTML={{ __html: themeScript }} />
                     <Main />
                     <NextScript />
                 </body>
