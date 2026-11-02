@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { useClickAway } from "@uidotdev/usehooks"
 import { CloseIcon, CoffeeIcon, HelpIcon, MoonIcon, SunIcon } from "./Icons"

@@ -1,5 +1,3 @@
-import React from "react"
-
 export default function PlateOnBarbell({ weightNum, plateColor, plateSize }) {
     let noZeroWeightNum = weightNum.toString()
     noZeroWeightNum = noZeroWeightNum.replace("0.", ".")

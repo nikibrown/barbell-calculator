@@ -1,4 +1,3 @@
-import React from "react"
 import { ResetIcon } from "./Icons"
 
 export default function ResetButton({ resetEverything }) {

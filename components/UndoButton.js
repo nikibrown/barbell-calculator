@@ -1,4 +1,3 @@
-import React from "react"
 import { UndoIcon } from "./Icons"
 
 export default function ResetButton({ undoLastPlate }) {

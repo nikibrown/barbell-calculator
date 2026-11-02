@@ -1,4 +1,3 @@
-import React from "react"
 import Head from "next/head"
 import { Saira } from "next/font/google"
 import "../styles.css"

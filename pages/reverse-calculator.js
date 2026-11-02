@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import { useState } from "react"
+import Head from "next/head"
 import HeaderNoBanner from "../components/HeaderNoBanner"
 import Footer from "../components/Footer"
 import BarbellButton from "../components/BarbellButton"
@@ -56,64 +57,42 @@ export default function ReverseCalculator() {
         // subtract barbell weight
         totalWeight = totalWeight - barbellWeight
 
-        // TODO: use data/weightData.js
-        let plates = {
-            // { weight: 55, plateCount: 0 }, // who actually has 55# plates????
-            pounds: [
-                { weight: 45, plateCount: 0, size: "large", color: "blue" },
-                { weight: 35, plateCount: 0, size: "large", color: "yellow" },
-                { weight: 25, plateCount: 0, size: "large", color: "green" },
-                { weight: 15, plateCount: 0, size: "large", color: "black" },
-                { weight: 10, plateCount: 0, size: "large", color: "black" },
-                { weight: 5, plateCount: 0, size: "small", color: "black" },
-                { weight: 2.5, plateCount: 0, size: "small", color: "black" },
-                { weight: 1, plateCount: 0, size: "small", color: "black" },
-                { weight: 0.75, plateCount: 0, size: "small", color: "black" },
-                { weight: 0.5, plateCount: 0, size: "small", color: "black" },
-                { weight: 0.25, plateCount: 0, size: "small", color: "black" },
-            ],
-            kilos: [
-                { weight: 20, plateCount: 0, size: "large", color: "blue" },
-                { weight: 15, plateCount: 0, size: "large", color: "yellow" },
-                { weight: 10, plateCount: 0, size: "large", color: "green" },
-                { weight: 5, plateCount: 0, size: "small", color: "black" },
-                { weight: 2.5, plateCount: 0, size: "small", color: "black" },
-                { weight: 2, plateCount: 0, size: "small", color: "black" },
-                { weight: 1.5, plateCount: 0, size: "small", color: "black" },
-                { weight: 1, plateCount: 0, size: "small", color: "black" },
-                { weight: 0.5, plateCount: 0, size: "small", color: "black" },
-            ],
-        }
-
         // while loop - iterate through until we run out of weight
         while (totalWeight > 0) {
-            // need if here for pounds / kilos
-
+            // plates from data/weightData.js, heaviest first
             let selectedPlates
 
             isPounds
-                ? (selectedPlates = plates.pounds)
-                : (selectedPlates = plates.kilos)
+                ? (selectedPlates = [
+                      ...weightData.plates.lbLargePlates,
+                      ...weightData.plates.lbSmallPlates,
+                  ])
+                : (selectedPlates = [
+                      ...weightData.plates.kgLargePlates,
+                      ...weightData.plates.kgSmallPlates,
+                  ])
 
             selectedPlates.forEach((plate) => {
+                let plateCount = 0
+
                 if (totalWeight / plate.weight >= 2) {
                     // set plateCount and round down
-                    plate.plateCount = Math.floor(totalWeight / plate.weight)
+                    plateCount = Math.floor(totalWeight / plate.weight)
 
                     // if plateCount is odd we probably dont want that...
-                    if (plate.plateCount % 2 !== 0) {
+                    if (plateCount % 2 !== 0) {
                         // odd plateCount - lets get rid of one of them
-                        plate.plateCount = plate.plateCount - 1
+                        plateCount = plateCount - 1
                     }
 
                     // subtract plateCount from totalWeight
-                    totalWeight = totalWeight - plate.plateCount * plate.weight
+                    totalWeight = totalWeight - plateCount * plate.weight
                 }
 
                 // add weights to barbell
-                if (plate.plateCount) {
+                if (plateCount) {
                     // addWeight plateCount / 2 number of times (each side)
-                    for (let i = 0; i < plate.plateCount / 2; i++) {
+                    for (let i = 0; i < plateCount / 2; i++) {
                         addWeightToBarbell(plate)
                     }
                 }
@@ -175,6 +154,10 @@ export default function ReverseCalculator() {
 
     return (
         <div className="app-container reverse-calculator">
+            <Head>
+                <title>🏋️💪 Reverse Barbell Calculator</title>
+            </Head>
+
             <HeaderNoBanner resetEverything={resetEverything} />
 
             <main>

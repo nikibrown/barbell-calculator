@@ -1,4 +1,3 @@
-import React from "react"
 import Document, { Html, Head, Main, NextScript } from "next/document"
 
 // Sets the saved theme (or the device's light/dark setting) before the
