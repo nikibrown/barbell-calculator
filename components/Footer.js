@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { designTokens } from "./designTokens"
 import Container from "./Container"
 import { useClickAway } from "@uidotdev/usehooks"
+import Link from "next/link"
 
 const FooterWrapper = styled.footer`
     background-color: ${designTokens.colors.black};
@@ -13,6 +14,17 @@ const FooterWrapper = styled.footer`
 
     p {
         margin: 0;
+    }
+
+    .footer-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a {
+            color: ${designTokens.colors.white};
+            text-decoration: none;
+        }
     }
 
     span {
@@ -129,7 +141,8 @@ export default function Footer() {
                 </InfoDialog>
             )}
             <Container>
-                <p>
+                <p className="footer-nav">
+                    <Link href="/reverse-calculator">Reverse calculator →</Link>
                     <span className="info">
                         <svg
                             onClick={() => {

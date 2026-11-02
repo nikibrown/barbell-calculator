@@ -7,7 +7,7 @@ import UndoButton from "./UndoButton"
 import Link from "next/link"
 
 const BannerWrapper = styled.section`
-    background-color: ${designTokens.colors.blue};
+    background-color: ${designTokens.colors.green};
     color: ${designTokens.colors.white};
     padding: 5px 0px;
 
@@ -17,7 +17,7 @@ const BannerWrapper = styled.section`
     }
 
     span {
-        background-color: ${designTokens.colors.red};
+        background-color: ${designTokens.colors.black};
         padding: 5px;
         display: inline-block;
         margin-right: 5px;
@@ -74,8 +74,8 @@ export default function Header({ undoLastPlate, resetEverything }) {
         <>
             <BannerWrapper>
                 <p>
-                    <Link href="/reverse-calculator">
-                        <span>New</span> Reverse Calculator &rarr;
+                    <Link href="https://nikibrown.link/bc-new">
+                        <span>New</span> Preview Barbell Calculator 2.0 &rarr;
                     </Link>
                 </p>
             </BannerWrapper>
